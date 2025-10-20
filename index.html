@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Travel Spot Picker — filter by region, budget, activities, and season." />
+  <title>Travel Spot Picker</title>
+
+  <!-- Font --><link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="home">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <h2>Travel Spot Picker</h2>
+      <p class="tagline">Filter by region, budget, activities, and season - then bookmark your favorites.</p>
+    </div>
+  </header>
+
+  <!-- Filters / Controls -->
+  <nav aria-label="Filters" class="filters">
+    <div class="container">
+      <form id="filtersForm">
+        <!-- Search -->
+        <fieldset>
+          <legend>Search</legend>
+          <label for="search" class="sr-only">Search by destination or country</label>
+          <input id="search" name="search" type="search" placeholder="Search destination or country..." autocomplete="off" />
+        </fieldset>
+
+        <!-- Region (countries list you specified) -->
+        <fieldset>
+          <legend>Region</legend>
+          <div class="checkboxes" id="regionCheckboxes">
+            <!-- Hard-coded options -->
+            <label class="checkbox-pill" for="region-USA">
+              <input id="region-USA" type="checkbox" name="region" value="USA">
+              <span>United States</span><span class="checkbox-count"></span>
+            </label>
+            <label class="checkbox-pill" for="region-Thailand">
+              <input id="region-Thailand" type="checkbox" name="region" value="Thailand">
+              <span>Thailand</span><span class="checkbox-count"></span>
+            </label>
+            <label class="checkbox-pill" for="region-Aus">
+              <input id="region-Aus" type="checkbox" name="region" value="Aus">
+              <span>Australia</span><span class="checkbox-count"></span>
+            </label>
+            <label class="checkbox-pill" for="region-NZ">
+              <input id="region-NZ" type="checkbox" name="region" value="NZ">
+              <span>New Zealand</span><span class="checkbox-count"></span>
+            </label> 
+            <label class="checkbox-pill" for="region-Spain">
+              <input id="region-Spain" type="checkbox" name="region" value="Spain">
+              <span>Spain</span><span class="checkbox-count"></span>
+            </label>
+            <label class="checkbox-pill" for="region-India">
+              <input id="region-India" type="checkbox" name="region" value="India">
+              <span>India</span><span class="checkbox-count"></span>
+            </label>
+            <label class="checkbox-pill" for="region-Japan">
+              <input id="region-Japan" type="checkbox" name="region" value="Japan">
+              <span>Japan</span><span class="checkbox-count"></span>
+            </label>
+            <label class="checkbox-pill" for="region-Germany">
+              <input id="region-Germany" type="checkbox" name="region" value="Germany">
+              <span>Germany</span><span class="checkbox-count"></span>
+            </label>
+            <label class="checkbox-pill" for="region-France">
+              <input id="region-France" type="checkbox" name="region" value="France">
+              <span>France</span><span class="checkbox-count"></span>
+            </label>
+            <label class="checkbox-pill" for="region-Brazil">
+              <input id="region-Brazil" type="checkbox" name="region" value="Brazil">
+              <span>Brazil</span><span class="checkbox-count"></span>
+            </label>
+            <label class="checkbox-pill" for="region-China">
+              <input id="region-China" type="checkbox" name="region" value="China">
+              <span>China</span><span class="checkbox-count"></span>
+            </label>
+            
+          </div>
+        </fieldset>
+
+        <!-- Budget -->
+        <fieldset>
+          <legend>Budget (USD/day)</legend>
+          <label for="budgetMax">Max budget: <output id="budgetMaxOutput" for="budgetMax"></output></label>
+          <input id="budgetMax" name="budgetMax" type="range" min="30" max="500" step="10" value="500" />
+        </fieldset>
+
+        <!-- Activities -->
+        <fieldset>
+          <legend>Activities</legend>
+          <div class="checkboxes" id="activityCheckboxes"><!-- JS or static later --></div>
+        </fieldset>
+
+        <!-- Season -->
+        <fieldset>
+          <legend>Best Season</legend>
+          <label for="season" class="sr-only">Choose a season</label>
+          <select id="season" name="season">
+            <option value="any" selected>Any</option>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Fall</option>
+            <option value="winter">Winter</option>
+            <option value="year-round">Year-round</option>
+          </select>
+        </fieldset>
+
+        <!-- Favorites toggle -->
+        <fieldset>
+          <legend>Show</legend>
+          <label class="checkbox-inline">
+            <input id="favoritesOnly" name="favoritesOnly" type="checkbox" />
+            Favorites only
+          </label>
+        </fieldset>
+
+        <!-- Sort -->
+        <fieldset>
+          <legend>Sort</legend>
+          <label for="sortBy" class="sr-only">Sort by</label>
+          <select id="sortBy" name="sortBy">
+            <option value="name-asc">Name (A→Z)</option>
+            <option value="name-desc">Name (Z→A)</option>
+            <option value="budget-asc">Budget (low→high)</option>
+            <option value="budget-desc">Budget (high→low)</option>
+            <option value="rating-desc">Rating (high→low)</option>
+            <option value="rating-asc">Rating (low→high)</option>
+          </select>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" id="goSearch" class="btn primary">Search</button>
+          <button type="button" id="clearFilters" class="btn ghost">Clear</button>
+          <button type="button" id="shareLink" class="btn">Copy link</button>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <!-- Simple About section (no big empty results preview) -->
+  <main id="main" tabindex="-1">
+    <div class="container">
+      <section class="results-section">
+        <h2>About me</h2>
+        <p class="muted">Use these given features for <strong>Search</strong> to see matching places on the results page.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Built for practical purpose only.</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
